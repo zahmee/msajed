@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      "sagalbot/vue-select",
+      "C:\\w2p_2.14.5\\applications\\kedu"
+    ]
+  ],
+  "_from": "sagalbot/vue-select",
+  "_id": "vue-select@1.0.5",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/vue-select",
+  "_phantomChildren": {},
+  "_requested": {
+    "hosted": {
+      "directUrl": "https://raw.githubusercontent.com/sagalbot/vue-select/master/package.json",
+      "gitUrl": "git://github.com/sagalbot/vue-select.git",
+      "httpsUrl": "git+https://github.com/sagalbot/vue-select.git",
+      "shortcut": "github:sagalbot/vue-select",
+      "ssh": "git@github.com:sagalbot/vue-select.git",
+      "sshUrl": "git+ssh://git@github.com/sagalbot/vue-select.git",
+      "type": "github"
+    },
+    "name": null,
+    "raw": "sagalbot/vue-select",
+    "rawSpec": "sagalbot/vue-select",
+    "scope": null,
+    "spec": "github:sagalbot/vue-select",
+    "type": "hosted"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "git://github.com/sagalbot/vue-select.git#1f3566919111585a80cab954a6c403c99c2b998e",
+  "_shasum": "381b289609e2c7f662c6921d78a6f48b51cb0681",
+  "_shrinkwrap": null,
+  "_spec": "sagalbot/vue-select",
+  "_where": "C:\\w2p_2.14.5\\applications\\kedu",
+  "author": {
+    "email": "sagalbot@gmail.com",
+    "name": "Jeff Sagal"
+  },
+  "browserify": {
+    "transform": [
+      "vueify",
+      "babelify"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/sagalbot/vue-select/issues"
+  },
+  "dependencies": {
+    "vue": "^1.0.16"
+  },
+  "description": "A Vue.js project",
+  "devDependencies": {
+    "babel-core": "^6.0.0",
+    "babel-plugin-transform-runtime": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-stage-2": "^6.0.0",
+    "babel-runtime": "^6.0.0",
+    "babelify": "^7.2.0",
+    "browserify": "^13.0.1",
+    "browserify-hmr": "^0.3.1",
+    "cross-env": "^1.0.5",
+    "eslint": "^2.9.0",
+    "eslint-plugin-html": "^1.1.0",
+    "http-server": "^0.9.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.15",
+    "karma-browserify": "^5.0.5",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-spec-reporter": "0.0.26",
+    "node-sass": "^3.4.2",
+    "phantomjs-prebuilt": "^2.1.3",
+    "proxyquireify": "^3.0.1",
+    "uglify-js": "^2.5.0",
+    "vue-hot-reload-api": "^1.2.2",
+    "vueify": "^8.4.0",
+    "vueify-insert-css": "^1.0.0",
+    "vuex": "^0.6.2",
+    "watchify": "^3.4.0"
+  },
+  "gitHead": "1f3566919111585a80cab954a6c403c99c2b998e",
+  "homepage": "https://github.com/sagalbot/vue-select#readme",
+  "main": "src/components/Select.vue",
+  "name": "vue-select",
+  "optionalDependencies": {},
+  "private": true,
+  "readme": "# vue-select [![Build Status](https://travis-ci.org/sagalbot/vue-select.svg?branch=master)](https://travis-ci.org/sagalbot/vue-select)\r\n\r\nRather than bringing in jQuery just to use Select2 or Chosen, this Vue.js component provides similar functionality without the extra overhead of jQuery, while providing the same awesome data-binding features you expect from Vue. Vue-select has no JavaScript dependencies other than Vue.\r\n\r\nCurrently the `vue-select` component includes bootstrap classes in the markup, that provide some default layout styles. If you're not using bootstrap in your project, you'll need to add some CSS yourself. This will likely be updated in the future so that the bootstrap classes are optional, and if they're not included, some sensible default layout-related CSS will be used.\r\n\r\n## Demo\r\n[http://sagalbot.github.io/vue-select/](http://sagalbot.github.io/vue-select/)\r\n\r\n## Install / Usage\r\n``` bash\r\n$ npm install sagalbot/vue-select\r\n```\r\n\r\n```html\r\n<template>\r\n   <div id=\"myApp\">\r\n      <v-select :value.sync=\"selected\" :options=\"options\"></v-select>\r\n   </div>\r\n</template>\r\n\r\n<script>\r\nimport vSelect from 'vue-select'\r\nexport default {\r\n  components: {vSelect},\r\n  data() {\r\n     return {\r\n        selected: null,\r\n        options: ['foo','bar','baz']\r\n     }\r\n  }\r\n}\r\n</script>\r\n```\r\n\r\n## Parameters\r\n```javascript\r\n  /**\r\n   * Contains the currently selected value. Very similar to a\r\n   * `value` attribute on an &amp;lt;input&amp;gt;. In most cases, you'll want\r\n   * to set this as a two-way binding, using :value.sync. However,\r\n   * this will not work with Vuex, in which case you'll need to use\r\n   * the onChange callback property.\r\n   * @type {Object||String||null}\r\n   */\r\n  value: {\r\n    default: null\r\n  },\r\n\r\n  /**\r\n   * An array of strings or objects to be used as dropdown choices.\r\n   * If you are using an array of objects, vue-select will look for\r\n   * a `label` key (ex. [{label: 'This is Foo', value: 'foo'}]). A\r\n   * custom label key can be set with the `label` prop.\r\n   * @type {Array}\r\n   */\r\n  options: {\r\n    type: Array,\r\n    default() { return [] },\r\n  },\r\n\r\n  /**\r\n   * Enable/disable filtering the options.\r\n   * @type {Boolean}\r\n   */\r\n  searchable: {\r\n    type: Boolean,\r\n    default: true\r\n  },\r\n\r\n  /**\r\n   * Equivalent to the `multiple` attribute on a `&lt;select&gt;` input.\r\n   * @type {Object}\r\n   */\r\n  multiple: {\r\n    type: Boolean,\r\n    default: false\r\n  },\r\n\r\n  /**\r\n   * Equivalent to the `placeholder` attribute on an `&lt;input&gt;`.\r\n   * @type {Object}\r\n   */\r\n  placeholder: {\r\n    type: String,\r\n    default: ''\r\n  },\r\n\r\n  /**\r\n   * Sets a Vue transition property on the `.dropdown-menu`. vue-select\r\n   * does not include CSS for transitions, you'll need to add them yourself.\r\n   * @type {String}\r\n   */\r\n  transition: {\r\n    type: String,\r\n    default: 'expand'\r\n  },\r\n\r\n  /**\r\n   * Enables/disables clearing the search text when an option is selected.\r\n   * @type {Boolean}\r\n   */\r\n  clearSearchOnSelect: {\r\n    type: Boolean,\r\n    default: true\r\n  },\r\n\r\n  /**\r\n   * Tells vue-select what key to use when generating option labels when\r\n   * `option` is an object.\r\n   * @type {Object}\r\n   */\r\n  label: {\r\n    type: String,\r\n    default: 'label'\r\n  },\r\n\r\n  /**\r\n   * An optional callback function that is called each time the selected\r\n   * value(s) change. When integrating with Vuex, use this callback to trigger\r\n   * an action, rather than using :value.sync to retreive the selected value.\r\n   * @type {[type]}\r\n   */\r\n  onChange: Function\r\n```\r\n\r\n## Todos:\r\n- load data from an ajax source with vue-resource\r\n- rich option formatting with slots/partials\r\n- fix layout/toggle issues when `searchable` is false\r\n- `simple` prop that disables `search` and keeps a static `placeholder` regardless of current selection (useful for things like icon button dropdowns)\r\n- less opinionated styles / only include css necessary to acheive layout (no colors, etc)\r\n- ~~ability to pre-select options when using `[{label: 'Foo', value: 'foo'}]` syntax (already works with `['foo','bar','baz']` syntax)~~\r\n- ~~fix layout issues with multiple selections~~\r\n\t- ~~tags overflow outside `.dropdown`~~\r\n\t- ~~search input overflows outside `.dropdown`~~\r\n- ~~use an actual element instead of `:after` to detect clicks on dropdown caret~~\r\n\r\n## Build Setup for Contributing\r\n\r\nIf there's a feature you'd like to see or you find a bug, feel free to fork and submit a PR. If your adding functionality, add tests to go with it.\r\n\r\n``` bash\r\n# install dependencies\r\nnpm install\r\n\r\n# serve with hot reload at localhost:8080\r\nnpm run dev\r\n\r\n# run unit tests\r\nnpm test\r\n\r\n# run unit tests on save\r\nnpm run test-watch\r\n```\r\n\r\nFor more information see the [docs for vueify](https://github.com/vuejs/vueify).\r\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sagalbot/vue-select.git"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production browserify -e src/main.js > dist/build.js",
+    "dev": "watchify -vd -p browserify-hmr -e src/main.js -o dist/build.js & http-server -c 1 -a localhost",
+    "lint": "eslint --ext .js,.vue src test/unit",
+    "test": "karma start karma.conf.js",
+    "test-watch": "karma start karma.conf.js --single-run false --auto-watch true",
+    "uglify": "cross-env NODE_ENV=production browserify -e src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
+  },
+  "version": "1.0.5"
+}

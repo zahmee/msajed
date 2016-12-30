@@ -1,0 +1,99 @@
+{{extend 'layout.html'}}
+<h3>
+    المواقع
+</h3>
+
+{{=grid}}
+
+
+
+{{
+    surl = request.url
+    if (('view' in surl) | ('edit' in surl) | ('new' in surl)) :
+}}
+
+
+
+<div id="map"></div>
+<style>#map { width:500px; height:500px; }</style>
+
+<script type="text/javascript">
+var map;
+
+
+$(document).ready(function(){
+});
+ 
+    window.initMap = function(){
+
+        {{
+            surl = request.url
+            if ('new' in surl ):
+        }}
+        var km = {lat: 18.307237, lng: 42.747047};
+        {{
+            elif ((('view' in surl) | ('edit' in surl)) & (db.locations[request.args(2)]!=None)  ):
+                rq = db.locations[request.args(2)]
+            s =  rq.gps.replace("(", "")
+            s =  s.replace(")", "")
+            ss = s.split(',')
+            #else:
+            #    s =  '18.307237 , 42.747047'
+            #    ss = s.split(',')
+        }}
+                var km = { lat: {{=ss[0]}}, lng: {{=ss[1]}} }
+
+            {{
+            pass
+            #//s =  rq.gps.replace("(", "")
+            #ss = ['18.307237' , '42.747047']
+
+
+        }}
+       map = new google.maps.Map(document.getElementById('map'), {
+         center: km ,
+         zoom: 12
+       });
+
+       var marker = new google.maps.Marker({
+       position: km,
+       map: map,
+       title: 'Click to zoom'
+       });
+
+        {{if (('edit' in surl) | ('new' in surl)): }}
+       map.addListener('click', function(e) {
+          placeMarkerAndPanTo(e.latLng, map);
+        });
+
+        function placeMarkerAndPanTo(latLng, map) {
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+          map.panTo(latLng);
+          $('#locations_gps').val(latLng) ;
+        }
+        {{pass}}
+     }
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAm-lbe8pFhZCLuDFHOmsXmnlZztno7BAY&callback=initMap&language=ar&region=ar"
+async defer></script>
+{{pass}}
+
+
+
+<br />
+<style>
+li>a {
+    color: #282cc3;
+}
+</style>
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous"><a href="{{=URL("setup","index")}}"> الترميزات <span aria-hidden="true">&larr;</span> </a></li>
+
+  </ul>
+</nav>

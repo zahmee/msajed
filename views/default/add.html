@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> نظام مساجد </title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}">
+    <!-- Speaking of Google, don't forget to set your site up:
+         http://google.com/webmasters -->
+    <meta name="google-site-verification" content="">
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
+    <link href="{{=URL('static', 'sweetalert-master/dist/sweetalert.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.png')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+     {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+
+    <style >
+
+</style>
+  </head>
+  <body style="direction:rtl;padding-top: 10px;background-image: url('{{=URL('static','images/bg/bg7.jpg')}}') ;">
+    <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+ <header class="masthead" style="background-color: lightslategray;">
+    <div class="headers center">
+        <br />
+        <h1>
+            <span class="label label-primary">
+                نظام مساجد
+            </span>
+        </h1>
+        <br />
+    </div>
+</header>
+     <!-- Begin page content -->
+    <div class="container-fluid main-container">
+    <div class="row ">
+      <div class="col-md-12">
+          <div class="well ">
+              <a class="btn btn-primary" href="{{=URL('default','usrout')}}" > تسجيل خروج </a>
+              {{=db.msajed_users[session.usr].name}}
+              <a class="btn btn-primary" href="{{=URL('default','getusr2')}}" > الايام </a>
+              <a class="btn btn-primary" href="{{=URL('default','chg_pass')}}" > تغيير كلمة السر </a>
+           </div>
+           <div class="well">
+               <h4>
+                   إضافة كلمة
+                    ليوم :
+                   {{=db.days[request.args(0)].key_days.name}}
+                    الموافق :
+                    {{=db.days[request.args(0)].day_d}}
+                    -
+                    {{=db.days[request.args(0)].day_m}}
+                    -
+                    {{=db.days[request.args(0)].day_y}}
+                    {{
+                        w_no = db.days[request.args(0)].week_no
+                        max = db.days.id.max()
+                        max_day = db(db.days.week_no==w_no).select(max).first()[max]
+                        min = db.days.id.min()
+                        min_day = db(db.days.week_no==w_no).select(min).first()[min]
+                    }}
+               </h4>
+                <hr />
+                <form   enctype="multipart/form-data" action="../add_spk" method="post">
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">المساجد المتاحة</label>
+                        {{dg =db.msajed_users[session.usr].user_degree }}
+                        {{ q = db().select(db.standards.ALL )     }}
+                        {{for i in q :}}  
+                            {{ if ((dg >= i.start_degree) & (dg <= i.end_degree)) :}}
+                                {{spes=db(db.standards_locations.standards == i.id).select()}}
+                                <select class="form-control" id="sel1" name="sel1"  onchange="$('#inp3').val($('#sel1 :selected').text())">
+                                {{for sp in spes:}}
+                                    {{loca =db((db.locations.key_location_type==sp.key_location_type) & (db.locations.key_location_category == sp.key_location_category )).select() }}
+
+                                    {{for lo in loca:}}
+                                        {{lotim = db((db.locations_times.locations==lo.id) & (db.locations_times.key_days==db.days[request.args(0)].key_days )).select() }}
+                                        {{if (lotim):}}
+                                            db(db.person.id > 0).count()
+                                            {{
+                                                loc_day = db((db.locations_speaker.locations==lo.id) & (db.locations_speaker.days == request.args(0) ) ).select()
+                                                locount = db((db.locations_speaker.locations==lo.id) & (db.locations_speaker.days <= max_day ) & ( db.locations_speaker.days >= min_day ) ).count()
+                                                if (db.locations[lo.id].c_count >= locount ) :
+                                                if not (loc_day) :
+                                            }}
+
+                                            <option value="{{=lo.id}}">{{=lo.name}} - {{=lotim.first().key_speech.name }} (
+                                                عدد الكلمات المحجوزة :
+                                                {{=locount}} ) </option>
+                                                {{pass}}
+
+                                            {{pass}}
+                                        {{pass}}
+                                    {{pass}}
+
+                                {{pass}}
+                                </select>
+                            {{pass}}
+                        {{pass}}
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">عنوان الكلمة</label>
+                        <input type="text" class="form-control" id="inp1" name="inp1" placeholder="عنوان الكلمة">
+                      </div>
+                      <input type="hidden" id="inp2"  name="inp2" value="{{=request.args(0)}}">
+                      <script>
+                          $('#inp3').val($('#sel1 :selected').text()) ;
+                      </script>
+                      <input type="hidden" id="inp3"  name="inp3" value="">
+                      <button type="submit" class="btn btn-default" onclick="$('#inp3').val($('#sel1 :selected').text())">حفظ</button>
+                </form>
+
+
+
+           </div>
+        </div>
+    </div>
+    </div>
+     <footer class="footer">
+      <div class="container-fluid">
+        <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>
+          <div id="poweredBy" class="pull-right">
+            جميع الحقوق محفوظة
+          </div>
+      </div>
+    </footer>
+     <!-- The javascript =============================== -->
+    <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+    <script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>
+    <script src="{{=URL('static','sweetalert-master/dist/sweetalert.min.js')}}"></script>
+
+    <script>
+    var purl= "{{=URL()}}" ;
+
+    </script>
+   </body>
+</html>

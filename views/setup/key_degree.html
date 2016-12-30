@@ -1,0 +1,22 @@
+{{extend 'layout.html'}}
+<style>
+.web2py_paginator {
+    background-color: rgba(0,0,0,0.5);
+
+}
+</style>
+{{=grid}}
+
+
+<br />
+<style>
+li>a {
+    color: #282cc3;
+}
+</style>
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous"><a href="{{=URL("setup","index")}}"> الترميزات <span aria-hidden="true">&larr;</span> </a></li>
+
+  </ul>
+</nav>

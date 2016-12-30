@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      "bootstrap-multiselect",
+      "C:\\w2p_2.14.5\\applications\\kedu\\static"
+    ]
+  ],
+  "_from": "bootstrap-multiselect@latest",
+  "_id": "bootstrap-multiselect@0.9.13-1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/bootstrap-multiselect",
+  "_npmUser": {
+    "email": "marshall@creativeideal.net",
+    "name": "marshallswain"
+  },
+  "_npmVersion": "1.4.28",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "bootstrap-multiselect",
+    "raw": "bootstrap-multiselect",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/bootstrap-multiselect/-/bootstrap-multiselect-0.9.13-1.tgz",
+  "_shasum": "2c57cee260b18d7f01a4edd9d65f25df0425fd2a",
+  "_shrinkwrap": null,
+  "_spec": "bootstrap-multiselect",
+  "_where": "C:\\w2p_2.14.5\\applications\\kedu\\static",
+  "author": {
+    "name": "David Stutz"
+  },
+  "bugs": {
+    "url": "https://github.com/davidstutz/bootstrap-multiselect/issues"
+  },
+  "dependencies": {},
+  "description": "JQuery multiselect plugin based on Twitter Bootstrap.",
+  "devDependencies": {},
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "dist": {
+    "shasum": "2c57cee260b18d7f01a4edd9d65f25df0425fd2a",
+    "tarball": "https://registry.npmjs.org/bootstrap-multiselect/-/bootstrap-multiselect-0.9.13-1.tgz"
+  },
+  "gitHead": "4d76ece7bf648f90e25549c7f9672bb0395fde55",
+  "homepage": "https://github.com/davidstutz/bootstrap-multiselect",
+  "keywords": [
+    "js",
+    "css",
+    "less",
+    "bootstrap",
+    "jquery",
+    "multiselect"
+  ],
+  "license": "Apache License, Version 2.0",
+  "main": "dist/js/bootstrap-multiselect.js",
+  "maintainers": [
+    {
+      "email": "marshall@creativeideal.net",
+      "name": "marshallswain"
+    }
+  ],
+  "name": "bootstrap-multiselect",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidstutz/bootstrap-multiselect.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.9.13-1"
+}

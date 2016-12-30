@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> نظام مساجد </title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}">
+    <!-- Speaking of Google, don't forget to set your site up:
+         http://google.com/webmasters -->
+    <meta name="google-site-verification" content="">
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.png')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+     {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+
+    <style >
+    .btn{
+        text-transform: uppercase;
+        color:#fff;
+        box-shadow:none;
+        transition: all 0.40s ease;
+        -webkit-transition: all 0.40s ease;
+        -moz-transition: all 0.40s ease;
+        -ms-transition: all 0.40s ease;
+        -o-transition: all 0.40s ease;
+    }
+    .btn.blue{
+        background:#0bbff2;
+    }
+    .btn.blue:hover {
+        color: #0bbff2;
+        background: transparent;
+        box-shadow: 0 0 10px 0 #0bbff2 inset, 0 0 10px 4px #0bbff2;
+    }
+    .btn.orange{
+        background:#e67e22;
+    }
+    .btn.orange:hover{
+        color: #e67e22;
+        background: transparent;
+        box-shadow: 0 0 10px 0 #e67e22 inset, 0 0 10px 4px #e67e22;
+    }
+    .btn.purple{
+        background:#580141;
+    }
+    .btn.purple:hover{
+        color: #580141;
+        background: transparent;
+        box-shadow: 0 0 10px 0 #580141 inset, 0 0 10px 4px #580141;
+    }
+    .btn.green{
+        background:#00852f;
+    }
+    .btn.green:hover{
+        color: #00852f;
+        background: transparent;
+        box-shadow: 0 0 10px 0 #00852f inset, 0 0 10px 4px #00852f;
+    }
+    @media only screen and (max-width: 767px) {
+        .btn{ margin-bottom: 15px; }
+    }
+</style>
+  </head>
+  <body style="direction:rtl;padding-top: 10px;background-image: url('{{=URL('static','images/bg/bg7.jpg')}}') ;">
+    <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+ <header class="masthead" style="background-color: lightslategray;">
+    <div class="headers center">
+        <br />
+        <h1>
+            <span class="label label-primary">
+                نظام مساجد
+            </span>
+        </h1>
+        <br />
+    </div>
+</header>
+     <!-- Begin page content -->
+    <div class="container-fluid main-container">
+    <div class="row center">
+      <div class="col-md-12">
+          <div class="well center">
+
+
+                       <div  >
+                          <a href="{{=URL('default','speaker')}}" style="width:150px" class="btn btn-primary">دخول المشائخ و الإئمة</a>
+                      </div>
+<br />
+                      <div  >
+                          <a href="{{=URL('default','index_2')}}"  style="width:150px"  class="btn btn-primary">دخول المسؤول</a>
+                      </div>
+
+                  </div>
+              </div>
+
+        </div>
+    </div>
+     <footer class="footer">
+      <div class="container-fluid">
+        <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>
+          <div id="poweredBy" class="pull-right">
+            جميع الحقوق محفوظة
+          </div>
+      </div>
+    </footer>
+     <!-- The javascript =============================== -->
+    <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+    <script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>
+   </body>
+</html>

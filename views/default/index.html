@@ -1,0 +1,55 @@
+{{extend 'layout.html'}}
+
+
+    {{if auth.is_logged_in(): }}
+
+
+
+    <h1>
+        نظام كلمات المساجد
+    </h1>
+    {{else:}}
+
+    <br />
+    <div class="well center">
+        <div  >
+           <a href="{{=URL('default','speaker')}}" style="width:150px" class="btn btn-primary">دخول المشائخ و الإئمة</a>
+       </div>
+    <br />
+    <br />
+                          <div  >
+                              <a href="#" onclick="$('#adminv').toggle();"  style="width:150px"  class="btn btn-primary">دخول المسؤول</a>
+                          </div>
+<div id="adminv" style="display: none;">
+    <h1>
+    تسجيل الدخول للنظام
+    </h1>
+
+    {{
+if request.args(0)=='login':
+    if not 'register' in auth.settings.actions_disabled:
+        form.add_button(T('Register'),URL(args='register', vars={'_next': request.vars._next} if request.vars._next else None),_class='btn')
+    pass
+    if not 'request_reset_password' in auth.settings.actions_disabled:
+        form.add_button(T('Lost Password'),URL('default','send_password'),_class='btn')
+    pass
+elif request.args(0)=='request_reset_password' :
+        redirect(URL('default','send_password'))
+pass
+=form
+}}
+</div>
+</div>
+{{pass}}
+
+
+
+
+<script language="javascript">
+jQuery("#web2py_user_form input:visible:enabled:first").focus();
+{{if request.args(0)=='register':}}
+    web2py_validate_entropy(jQuery('#auth_user_password'),100);
+{{elif request.args(0)=='change_password':}}
+    web2py_validate_entropy(jQuery('#no_table_new_password'),100);
+{{pass}}
+</script>

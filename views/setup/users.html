@@ -1,0 +1,38 @@
+{{extend 'layout.html'}}
+
+<style>
+    td, th {
+ text-align: right;
+}
+    #w2p_query_fields {
+        float: right;
+    }
+        .web2py_counter{
+            float: left ;
+         text-align: left ;
+        }
+</style>
+
+<h3>  المستخدمين  </h4>
+
+{{=grid}}
+
+<hr>
+
+
+<script>
+    $("#w2p_query_fields").attr( "style", "" );
+</script>
+
+
+<br />
+<style>
+li>a {
+    color: #282cc3;
+}
+</style>
+<nav aria-label="...">
+  <ul class="pager">
+    <li class="previous"><a href="{{=URL("setup","index")}}"> الترميزات <span aria-hidden="true">&larr;</span> </a></li>
+
+  </ul>
