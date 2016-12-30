@@ -1,4 +1,5 @@
 .ftpconfig
+.gitignore
 temp.txt
 databases/
 errors/
